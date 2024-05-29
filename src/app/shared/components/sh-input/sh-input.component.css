@@ -1,0 +1,11 @@
+@import "../../../../styles.css";
+
+.sh-input {
+  width: 18rem;
+  height: 2.5rem;
+  border-radius: 0.4rem;
+  padding: 1rem;
+  outline: none;
+  border: 1px solid var(--main-blue);
+  font-size: 0.9rem;
+}

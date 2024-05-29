@@ -1,1 +1,40 @@
 /* You can add global styles to this file, and also import other style files */
+
+* {
+  box-sizing: border-box;
+  position: relative;
+  min-width: 0;
+}
+
+body {
+  margin: 0;
+  min-height: 100dvh;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+/** Variables **/
+
+:root {
+  /* Theme bg */
+  --main-blue: #5c9aff;
+  --blue-alternative: #5ccce6;
+  --neutro: #72fcd5;
+  --main-green: #5ce67e;
+  --green-alternative: #90fc65;
+
+  /*  Theme text   */
+  --main-black: #01060e;
+  --main-white: #fff;
+  --main-gray: #5f6266;
+}
