@@ -1,0 +1,37 @@
+@import "../../../../styles.css";
+
+.container {
+  top: 0;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--main-black-alternative);
+  transition: all 1s;
+}
+
+.sh-notify {
+  margin: 5rem;
+  background-color: var(--main-black);
+  min-width: 350px;
+  width: 650px;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  border-radius: 1rem;
+  justify-content: space-   ;
+  color: white;
+
+  & .sh-notify__footer{
+    display: flex;
+    justify-content: end;
+    gap: 0.5rem ;
+  }
+}
+
+hr{
+  color: var( --main-white);
+  
+}

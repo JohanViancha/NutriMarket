@@ -35,6 +35,7 @@ p {
 
   /*  Theme text   */
   --main-black: #01060e;
+  --main-black-alternative: rgba(1, 6, 14, 0.4);
   --main-white: #fff;
   --main-gray: #5f6266;
 }

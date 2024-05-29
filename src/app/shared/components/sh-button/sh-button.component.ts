@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-sh-button',
@@ -10,4 +10,9 @@ import { Component, Input } from '@angular/core';
 export class ShButtonComponent {
 
   @Input() text:string = 'Button'
+  @Output() confirm: EventEmitter<boolean> = new EventEmitter()
+
+  click(){
+    this.confirm.emit()
+  }
 }
