@@ -1,20 +1,24 @@
 <div class="container">
   <h1>NutriMarket</h1>
   <form class="login" [formGroup]="formLogin" (submit)="login($event)">
-    <div class="login__email">
-      <label for="">Usuerio</label>
+    <label class="login__title" for="">Sign in</label>
+    <div class="login__user">
+      <label for="">Usuario</label>
       <app-sh-input formControlName="user" [type]="'text'"></app-sh-input>
 
       @if (formLogin.controls['user'].errors?.['required'] &&
       formLogin.controls['user'].touched) {
 
-      <small class="error-field">Este campo es obligatorio</small>
+      <app-sh-alert
+        [text]="'Esto campo es obligatorio'"
+        [type]="'error'"
+      ></app-sh-alert>
 
       }
     </div>
 
     <div class="login__password">
-      <label for="">Password</label>
+      <label for="">Contraseña</label>
       <app-sh-input
         [type]="'password'"
         formControlName="password"
@@ -23,9 +27,21 @@
       @if (formLogin.controls['password'].errors?.['required'] &&
       formLogin.controls['password'].touched) {
 
-      <small class="error-field">Este campo es obligatorio</small>
+      <app-sh-alert
+        [text]="'Esto campo es obligatorio'"
+        [type]="'error'"
+      ></app-sh-alert>
       }
     </div>
-    <app-sh-button [disabled]="formLogin.invalid && formLogin.touched">Ingresar</app-sh-button>
+    <div class="register">
+      <small class="register__question">
+        ¿No tienes cuenta?
+        <a class="register__link" [routerLink]="['/register']">Registrarme</a>
+      </small>
+    </div>
+
+    <app-sh-button [disabled]="formLogin.invalid && formLogin.touched"
+      >Ingresar</app-sh-button
+    >
   </form>
 </div>

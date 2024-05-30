@@ -1,0 +1,97 @@
+<div class="container">
+  <div class="go-login">
+    <a class="go-login__link" [routerLink]="['']">Ir al login</a>
+  </div>
+  <h1>NutriMarket</h1>
+
+  <form class="register" [formGroup]="formRegister" (submit)="register($event)">
+    <label class="register__title" for="">Sign on</label>
+
+    <div class="register__name">
+      <label for="">Nombre</label>
+      <app-sh-input formControlName="name" [type]="'text'"></app-sh-input>
+
+      @if (formRegister.controls['name'].errors?.['required'] &&
+      formRegister.controls['name'].touched) {
+      <app-sh-alert
+        [text]="'Esto campo es obligatorio'"
+        [type]="'error'"
+      ></app-sh-alert>
+      }
+    </div>
+    <div class="register__user">
+      <label for="">Usuario</label>
+      <app-sh-input formControlName="user" [type]="'text'"></app-sh-input>
+
+      @if (formRegister.controls['user'].errors?.['required'] &&
+      formRegister.controls['user'].touched) {
+
+      <app-sh-alert
+        [text]="'Esto campo es obligatorio'"
+        [type]="'error'"
+      ></app-sh-alert>
+      }
+    </div>
+
+    <div class="register__password">
+      <label for="">Contraseña</label>
+      <app-sh-input
+        [type]="'password'"
+        formControlName="password"
+      ></app-sh-input>
+
+      <app-sh-alert
+        [text]="
+          'Debe tener al menos ocho caracteres, incluyendo una letra mayúscula, una letra minúscula, un número y un carácter especial (@$!%*?&).'
+        "
+        [type]="'info'"
+      ></app-sh-alert>
+
+      @if (formRegister.controls['password'].errors?.['required'] &&
+      formRegister.controls['password'].touched) {
+
+      <app-sh-alert
+        [text]="'Esto campo es obligatorio'"
+        [type]="'error'"
+      ></app-sh-alert>
+      } @if (formRegister.controls['password'].errors?.['pattern'] &&
+      formRegister.controls['password'].touched) {
+
+      <app-sh-alert
+        [text]="'Esto campo no cumple con la estructura definida'"
+        [type]="'error'"
+      ></app-sh-alert>
+      }
+    </div>
+
+    <div class="register__password">
+      <label for="">Confirmar contraseña</label>
+      <app-sh-input
+        [type]="'password'"
+        formControlName="confirmPassword"
+      ></app-sh-input>
+
+      @if (formRegister.controls['confirmPassword'].errors?.['required'] &&
+      formRegister.controls['confirmPassword'].touched) {
+
+      <app-sh-alert
+        [text]="'Esto campo es obligatorio'"
+        [type]="'error'"
+      ></app-sh-alert>
+
+      } @if (formRegister.controls['confirmPassword'].touched &&
+      formRegister.controls['password'].value !==
+      formRegister.controls['confirmPassword'].value ) {
+
+      <app-sh-alert
+        [text]="'Esto campo debe coincidir con el campo de contraseña'"
+        [type]="'error'"
+      ></app-sh-alert>
+      }
+    </div>
+
+    <app-sh-button [disabled]="formRegister.invalid && formRegister.touched"
+      >Registrarse</app-sh-button
+    >
+  </form>
+</div>
