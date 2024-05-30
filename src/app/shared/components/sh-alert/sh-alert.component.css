@@ -1,0 +1,23 @@
+@import "../../../../styles.css";
+
+.alert {
+  width: 100%;
+  font-weight: bold;
+  padding: 0.5rem 1rem;
+  border-radius: 0.4rem;
+
+  & .alert__text {
+    white-space: normal;
+    overflow-wrap: break-word;
+  }
+}
+
+.error {
+  color: var(--main-error);
+  background-color: var(--bg-error);
+}
+
+.info {
+  color: var(--main-blue);
+  background-color: var(--bg-info);
+}
