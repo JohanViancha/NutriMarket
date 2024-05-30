@@ -38,5 +38,11 @@ p {
   --main-black-alternative: rgba(1, 6, 14, 0.4);
   --main-white: #fff;
   --main-gray: #5f6266;
+
+  /* Theme alert */
   --main-error: #cc2121;
+  --bg-error: #f0c9c9;
+
+  --main-info: #216bcc;
+  --bg-info: #c9def0;
 }

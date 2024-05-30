@@ -9,12 +9,22 @@
   flex-direction: column;
 }
 
-.login {
+.go-login{
+  width: 100%;
+  padding: 2rem;
+  & .go-login__link {
+    color: var(--main-blue);
+    text-decoration: none;
+  }
+  
+}
+
+.register {
   display: flex;
   flex-direction: column;
   gap: 1rem;
 
-  & .login__title {
+  & .register__title {
     font-size: 2rem;
     text-align: center;
   }
@@ -28,11 +38,5 @@
 
   & div label {
     font-weight: bold;
-  }
-}
-
-.register {
-  & .register__link {
-    color: var(--main-blue);
   }
 }
