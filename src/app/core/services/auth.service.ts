@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { User, db } from '../../../../db';
+import { Food, User, db } from '../../../../db';
 import { Observable, from } from 'rxjs';
 import { liveQuery } from 'dexie';
 
@@ -10,7 +10,10 @@ export class AuthService {
   users$ = liveQuery(() => db.users.toArray());
   constructor() {}
 
-  login(userValue: string, passwordValue: string) {
+  login(
+    userValue: string = '',
+    passwordValue: string = ''
+  ): Observable<User[]> {
     return from(
       db.users
         .filter(
@@ -19,5 +22,9 @@ export class AuthService {
         )
         .toArray()
     );
+  }
+
+  register(user: User) {
+    return from(db.users.add(user));
   }
 }
