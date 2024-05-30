@@ -13,5 +13,10 @@
 }
 
 .sh-button:hover{
+  background-color: var(--blue-alternative);
+
+}
+
+.sh-button:disabled{
   opacity: 0.5;
 }

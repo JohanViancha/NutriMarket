@@ -5,14 +5,15 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   standalone: true,
   imports: [],
   templateUrl: './sh-button.component.html',
-  styleUrl: './sh-button.component.css'
+  styleUrl: './sh-button.component.css',
 })
 export class ShButtonComponent {
+  @Input() text: string = 'Button';
+  @Input() disabled: boolean = false;
 
-  @Input() text:string = 'Button'
-  @Output() confirm: EventEmitter<boolean> = new EventEmitter()
+  @Output() confirm: EventEmitter<boolean> = new EventEmitter();
 
-  click(){
-    this.confirm.emit()
+  click() {
+    this.confirm.emit();
   }
 }
