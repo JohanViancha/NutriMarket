@@ -1,0 +1,37 @@
+<div class="header">
+  <p class="header__name">NutriMarket</p>
+
+  @if(hasSearchBar) {
+  <div class="header__search">
+    <app-sh-input
+      [placeholder]="'Busca un producto'"
+      [type]="'search'"
+    ></app-sh-input>
+  </div>
+  }
+
+  <div class="header__auth">
+    @if(!user.id) {
+    <a [routerLink]="['/auth']">Ingresar</a>
+    <a [routerLink]="['/auth/register']">Registrar</a>
+    }
+  </div>
+
+  <div class="header__profile">
+    <i class="fa-solid fa-cart-shopping"></i>
+    @if(user.id) {
+    <div class="container-session" (click)="togglePanel()">
+      <i class="container-session__icon fa-solid fa-user"></i>
+      <span class="container-session__user">{{ user.name }}</span>
+    </div>
+
+    <div class="panel-user" [ngStyle]="{ height: isPanelOpen ? '230px' : '0' }">
+      <i class="fa-solid fa-user"></i>
+      <span>{{ user.name }}</span>
+      <span>{{ user.user }}</span>
+      <app-sh-button (onclick)="closeSession()">Cerrar sesión</app-sh-button>
+    </div>
+
+    }
+  </div>
+</div>

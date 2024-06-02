@@ -6,16 +6,16 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { tap } from 'rxjs/operators';
-import { User } from '../../../../db';
-import { AuthService } from '../../core/services/auth.service';
-import { ShAlertComponent } from '../../shared/components/sh-alert/sh-alert.component';
-import { ShButtonComponent } from '../../shared/components/sh-button/sh-button.component';
-import { ShInputComponent } from '../../shared/components/sh-input/sh-input.component';
-import { SignOnForm } from '../../shared/models/user';
-import { NotifyService } from '../../shared/services/notify.service';
-import { USER_REGISTER_NOTIFICATION } from '../../shared/models/notify';
 import { RouterModule } from '@angular/router';
+import { tap } from 'rxjs/operators';
+import { User } from '../../../../../db';
+import { AuthService } from '../../../core/services/auth.service';
+import { ShAlertComponent } from '../../../shared/components/sh-alert/sh-alert.component';
+import { ShButtonComponent } from '../../../shared/components/sh-button/sh-button.component';
+import { ShInputComponent } from '../../../shared/components/sh-input/sh-input.component';
+import { USER_REGISTER_NOTIFICATION } from '../../../shared/models/notify';
+import { SignOnForm } from '../../../shared/models/user';
+import { NotifyService } from '../../../shared/services/notify.service';
 
 @Component({
   selector: 'app-register',

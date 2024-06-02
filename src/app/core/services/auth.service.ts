@@ -1,16 +1,13 @@
 import { Injectable } from '@angular/core';
-import { Food, User, db } from '../../../../db';
-import { Observable, from } from 'rxjs';
-import { liveQuery } from 'dexie';
+import { Observable, from, of } from 'rxjs';
+import { User, db } from '../../../../db';
+import { UserSession } from '../../shared/models/user';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  users$ = liveQuery(() => db.users.toArray());
-  constructor() {}
-
-  login(
+  validateUserCredentials(
     userValue: string = '',
     passwordValue: string = ''
   ): Observable<User[]> {
@@ -26,5 +23,23 @@ export class AuthService {
 
   register(user: User) {
     return from(db.users.add(user));
+  }
+
+  saveSession(user: UserSession): void {
+    sessionStorage.setItem('session', JSON.stringify(user));
+  }
+
+  getSession(): Observable<UserSession> {
+    console.log(sessionStorage.getItem('session'));
+    return of(
+      JSON.parse(
+        sessionStorage.getItem('session') ||
+          '{"id":0,"name":"","user":"","date":""}'
+      ) as UserSession
+    );
+  }
+
+  clearSession(): void {
+    sessionStorage.removeItem('session');
   }
 }

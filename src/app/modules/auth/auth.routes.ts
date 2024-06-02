@@ -11,4 +11,8 @@ export const AUTH_ROUTES: Routes = [
     path: 'register',
     component: RegisterComponent,
   },
+  {
+    path:'*',
+    component: LoginComponent,
+  }
 ];
