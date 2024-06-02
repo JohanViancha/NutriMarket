@@ -1,9 +1,8 @@
 import { Component, Input, forwardRef } from '@angular/core';
 import {
   ControlValueAccessor,
-  FormControl,
   NG_VALUE_ACCESSOR,
-  ReactiveFormsModule,
+  ReactiveFormsModule
 } from '@angular/forms';
 
 @Component({
@@ -22,6 +21,7 @@ import {
 })
 export class ShInputComponent implements ControlValueAccessor {
   @Input() type: string = '';
+  @Input() placeholder: string = '';
   public value: string = '';
   public changed: (value: string) => void = () => {};
   public touched: () => void = () => {};

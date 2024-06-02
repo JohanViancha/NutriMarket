@@ -8,12 +8,10 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrl: './sh-button.component.css',
 })
 export class ShButtonComponent {
-  @Input() text: string = 'Button';
   @Input() disabled: boolean = false;
-
-  @Output() confirm: EventEmitter<boolean> = new EventEmitter();
+  @Output() onclick: EventEmitter<boolean> = new EventEmitter();
 
   click() {
-    this.confirm.emit();
+    this.onclick.emit();
   }
 }

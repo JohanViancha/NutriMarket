@@ -1,0 +1,9 @@
+<div class="food">
+  <img class="food__img" [src]="food.img" alt="Foto del alimento" />
+  <span class="food__name">{{ food.name }}</span>
+  <p class="food__description">{{ food.description }}</p>
+  <span class="food__price">{{ food.price | currency:'USD' }}</span>
+  <app-sh-button>
+    <i class="fa-solid fa-cart-plus"></i> Agregar al carro
+  </app-sh-button>
+</div>

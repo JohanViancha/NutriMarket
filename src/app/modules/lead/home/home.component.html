@@ -1,0 +1,7 @@
+<app-sh-header
+  [userSession$]="userSession$"
+  [hasSearchBar]="true"
+  (closeSessionEvent)="closeSession()"
+></app-sh-header>
+
+<app-food-list [foodList$]="foodList$"></app-food-list>

@@ -1,0 +1,7 @@
+<section class="container">
+  <div class="food-list">
+    @for (food of foodList$ | async; track food.id) {
+    <app-food-card [food]="food"></app-food-card>
+    }
+  </div>
+</section>

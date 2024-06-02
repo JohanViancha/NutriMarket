@@ -11,3 +11,10 @@ export interface SignOnForm {
   password: FormControl<string | null>;
   confirmPassword: FormControl<string | null>;
 }
+
+export interface UserSession {
+  id: number;
+  name: string;
+  user: string;
+  date: string;
+}
