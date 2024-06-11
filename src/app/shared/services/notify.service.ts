@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { Notify } from '../models/notify';
+import { Notify } from '../models/notifiy/notify.interfaces';
+import { Command } from '../models/notifiy/command.interfaces';
 
 @Injectable({
   providedIn: 'root',
@@ -13,18 +14,22 @@ export class NotifyService {
     content: { title: '', body: '' },
     hasCancelButton: false,
   });
+  private command: Command | null = null;
 
   notify$ = this.notify.asObservable();
   isNotifyOpen$ = this.isOpen.asObservable();
 
-  showNotification(notify: Notify) {
+  showNotification(notify: Notify, command: Command) {
     this.isOpen.next(true);
     this.notify.next(notify);
+    this.command = command;
   }
 
-  hideNotification(): void {
+  confirm() {
+    this.command?.execute();
+  }
+
+  hideNotification() {
     this.isOpen.next(false);
   }
-
-  constructor() {}
 }

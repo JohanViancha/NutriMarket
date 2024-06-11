@@ -1,20 +1,23 @@
-
-  @if(isNotifyOpen$ | async) {
-    <div class="container" @fadeInOut>
-      <div class="sh-notify">
-        <div class="sh-notify__title">
-          <h2>{{ notify.content.title }}</h2>
-          <hr />
-        </div>
-        <div class="sh-notify__body">
-          <p>{{ notify.content.body }}</p>
-        </div>
-        <div class="sh-notify__footer">
-          <app-sh-button (confirm)="hasConfirmed()">Confimar</app-sh-button>
-          <app-sh-button *ngIf="notify.hasCancelButton">Cancel</app-sh-button>
-        </div>
-      </div>
+@if(isNotifyOpen$ | async) {
+<div class="container" @fadeInOut>
+  <div class="sh-notify">
+    <div class="sh-notify__title">
+      <h2>{{ notify.content.title }}</h2>
+      <hr />
     </div>
-    
-  }
- 
+    <div class="sh-notify__body">
+      <p>{{ notify.content.body }}</p>
+    </div>
+    <div class="sh-notify__footer">
+      <app-sh-button
+        [variant]="'outline'"
+        (onclick)="hasCancel()"
+        *ngIf="notify.hasCancelButton"
+        >Cancel</app-sh-button
+      >
+      <app-sh-button (onclick)="hasConfirmed()">Confimar</app-sh-button>
+    </div>
+  </div>
+</div>
+
+}

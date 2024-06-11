@@ -15,6 +15,7 @@ import { ShButtonComponent } from '../sh-button/sh-button.component';
 })
 export class ShHeaderComponent implements OnInit {
   @Input() userSession$!: Observable<UserSession>;
+  @Input() cartItemCount$!: Observable<number>;
   @Input() hasSearchBar: boolean = false;
   isPanelOpen = false;
   @Output() closeSessionEvent: EventEmitter<boolean> = new EventEmitter();
@@ -22,6 +23,14 @@ export class ShHeaderComponent implements OnInit {
   user!: UserSession;
 
   ngOnInit(): void {
+    this.initUser();
+  }
+
+  closeSession() {
+    this.closeSessionEvent.emit(true);
+  }
+
+  initUser() {
     this.userSession$
       .pipe(
         tap((user: UserSession) => {
@@ -31,10 +40,6 @@ export class ShHeaderComponent implements OnInit {
         })
       )
       .subscribe();
-  }
-
-  closeSession() {
-    this.closeSessionEvent.emit(true);
   }
 
   togglePanel() {

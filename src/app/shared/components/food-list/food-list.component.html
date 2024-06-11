@@ -1,7 +1,7 @@
 <section class="container">
   <div class="food-list">
     @for (food of foodList$ | async; track food.id) {
-    <app-food-card [food]="food"></app-food-card>
+    <app-food-card (addToShoppingCart)="addToCart($event)" [food]="food"></app-food-card>
     }
   </div>
 </section>

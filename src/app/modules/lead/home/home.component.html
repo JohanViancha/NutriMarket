@@ -1,7 +1,14 @@
-<app-sh-header
+<div class="container">
+
+  <app-sh-header
   [userSession$]="userSession$"
   [hasSearchBar]="true"
+  [cartItemCount$]="cartItemCount$"
   (closeSessionEvent)="closeSession()"
 ></app-sh-header>
 
-<app-food-list [foodList$]="foodList$"></app-food-list>
+</div>
+
+
+<router-outlet></router-outlet>
+

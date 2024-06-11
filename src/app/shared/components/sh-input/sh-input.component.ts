@@ -2,7 +2,7 @@ import { Component, Input, forwardRef } from '@angular/core';
 import {
   ControlValueAccessor,
   NG_VALUE_ACCESSOR,
-  ReactiveFormsModule
+  ReactiveFormsModule,
 } from '@angular/forms';
 
 @Component({
@@ -22,12 +22,14 @@ import {
 export class ShInputComponent implements ControlValueAccessor {
   @Input() type: string = '';
   @Input() placeholder: string = '';
-  public value: string = '';
-  public changed: (value: string) => void = () => {};
+  @Input() min?: number = 1;
+
+  public value: any;
+  public changed: (value: any) => void = () => {};
   public touched: () => void = () => {};
   public isDisabled!: boolean;
 
-  writeValue(value: string): void {
+  writeValue(value: any): void {
     this.value = value;
   }
   registerOnChange(fn: any): void {

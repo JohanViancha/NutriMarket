@@ -1,5 +1,5 @@
 <div class="header">
-  <p class="header__name">NutriMarket</p>
+  <a [routerLink]="['']" class="header__name">NutriMarket</a>
 
   @if(hasSearchBar) {
   <div class="header__search">
@@ -18,7 +18,11 @@
   </div>
 
   <div class="header__profile">
-    <i class="fa-solid fa-cart-shopping"></i>
+    <a [routerLink]="['cart']" class="cart-item-count">
+      <span *ngIf=" (cartItemCount$ |async) ">{{ cartItemCount$ | async }}</span>
+      <i class="fa-solid fa-cart-shopping"></i>
+    </a>
+
     @if(user.id) {
     <div class="container-session" (click)="togglePanel()">
       <i class="container-session__icon fa-solid fa-user"></i>

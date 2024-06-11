@@ -13,9 +13,10 @@ import { AuthService } from '../../../core/services/auth.service';
 import { ShAlertComponent } from '../../../shared/components/sh-alert/sh-alert.component';
 import { ShButtonComponent } from '../../../shared/components/sh-button/sh-button.component';
 import { ShInputComponent } from '../../../shared/components/sh-input/sh-input.component';
-import { USER_REGISTER_NOTIFICATION } from '../../../shared/models/notify';
 import { SignOnForm } from '../../../shared/models/user';
 import { NotifyService } from '../../../shared/services/notify.service';
+import { CloseCommand } from '../../../shared/models/notifiy/commands/CloseCommand';
+import { USER_REGISTER_NOTIFICATION } from '../../../shared/models/notifiy/notify.constant';
 
 @Component({
   selector: 'app-register',
@@ -68,7 +69,11 @@ export class RegisterComponent implements OnInit {
       .pipe(
         tap((id: number) => {
           if (id) {
-            this.notifyService.showNotification(USER_REGISTER_NOTIFICATION);
+            const closeCommand = new CloseCommand(this.notifyService);
+            this.notifyService.showNotification(
+              USER_REGISTER_NOTIFICATION,
+              closeCommand
+            );
             this.formRegister.reset();
           }
         })

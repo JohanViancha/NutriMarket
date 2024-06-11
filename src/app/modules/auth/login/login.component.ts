@@ -14,9 +14,10 @@ import { ShAlertComponent } from '../../../shared/components/sh-alert/sh-alert.c
 import { ShButtonComponent } from '../../../shared/components/sh-button/sh-button.component';
 import { ShInputComponent } from '../../../shared/components/sh-input/sh-input.component';
 import { ShNotifyComponent } from '../../../shared/components/sh-notify/sh-notify.component';
-import { INCORRECT_USER_NOTIFICATION } from '../../../shared/models/notify';
 import { SignInForm, UserSession } from '../../../shared/models/user';
 import { NotifyService } from '../../../shared/services/notify.service';
+import { CloseCommand } from '../../../shared/models/notifiy/commands/CloseCommand';
+import { INCORRECT_USER_NOTIFICATION } from '../../../shared/models/notifiy/notify.constant';
 
 @Component({
   selector: 'app-login',
@@ -61,7 +62,7 @@ export class LoginComponent implements OnInit, OnDestroy {
       .pipe(
         tap((user: User[]) =>
           user.length === 0
-            ? this.notifyService.showNotification(INCORRECT_USER_NOTIFICATION)
+            ? this.notifyUserLoginError()
             : this.userLogin({
                 id: user[0].id || 0,
                 name: user[0].name,
@@ -73,7 +74,16 @@ export class LoginComponent implements OnInit, OnDestroy {
       .subscribe();
   }
 
+  notifyUserLoginError() {
+    const closeCommand = new CloseCommand(this.notifyService);
+    this.notifyService.showNotification(
+      INCORRECT_USER_NOTIFICATION,
+      closeCommand
+    );
+  }
+
   userLogin(user: UserSession) {
+    this.authService.setUserSession(user);
     this.authService.saveSession(user);
     this.router.navigate(['']);
   }

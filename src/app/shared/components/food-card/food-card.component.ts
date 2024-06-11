@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Food } from '../../../../../db';
 import { CommonModule } from '@angular/common';
 import { ShButtonComponent } from '../sh-button/sh-button.component';
@@ -12,4 +12,9 @@ import { ShButtonComponent } from '../sh-button/sh-button.component';
 })
 export class FoodCardComponent {
   @Input() food!: Food;
+  @Output() addToShoppingCart: EventEmitter<Food> = new EventEmitter();
+
+  addToCart(food: Food) {
+    this.addToShoppingCart.emit(food);
+  }
 }

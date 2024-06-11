@@ -10,6 +10,7 @@
   align-items: center;
   background-color: var(--main-black-alternative);
   transition: all 1s;
+  z-index: 40;
 }
 
 .sh-notify {
@@ -21,7 +22,7 @@
   flex-direction: column;
   padding: 1rem;
   border-radius: 1rem;
-  justify-content: space-   ;
+  justify-content: space-between;
   color: white;
 
   & .sh-notify__footer{

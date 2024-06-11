@@ -1,0 +1,69 @@
+<div class="container">
+  <h2>Carro de compras</h2>
+
+  <div [formGroup]="formCart" class="cart-buy">
+    <form formArrayName="items" class="cart">
+      @for (item of products; track $index) {
+      <div class="cart-product" [formGroupName]="$index">
+        <img class="cart-product__img" [src]="item.img" alt="" />
+        <div class="cart-product__description">
+          <p>{{ item.name }}</p>
+          <small>{{ item.description }}</small>
+        </div>
+
+        <span class="cart-product__price">{{ item.price | currencyCop }}</span>
+        <div class="cart-product__input">
+          <app-sh-input
+            formControlName="quantity"
+            [type]="'number'"
+            [placeholder]="'Cantidad'"
+            [min]="1"
+          ></app-sh-input>
+
+          @if
+          (getCartBuyFormItem($index).get('quantity')!.hasError('stockError')) {
+          <app-sh-alert
+            [type]="'error'"
+            [text]="'Stock insuficiente'"
+          ></app-sh-alert
+          >} @if
+          (getCartBuyFormItem($index).get('quantity')!.hasError('pattern')) {
+          <app-sh-alert
+            [type]="'error'"
+            [text]="'Valor invalido'"
+          ></app-sh-alert>
+          }
+        </div>
+        <div class="cart-product__button">
+          <app-sh-button (onclick)="removeCartItem(item.id!, $index)"
+            ><i class="fa-solid fa-trash"></i
+          ></app-sh-button>
+        </div>
+      </div>
+
+      }@empty {
+      <app-sh-alert [text]="'No hay productos agregados al carro de compras'">
+      </app-sh-alert>
+      }
+    </form>
+    <div class="summary">
+      <div>
+        <span>Subotal</span>
+        <p>{{ calculateSubtotal() | currencyCop }}</p>
+        <span>Iva</span>
+      </div>
+      <div>
+        <p>
+          {{ calculateSubtotal() * 0.19 | currencyCop }}
+        </p>
+      </div>
+      <hr />
+
+      <app-sh-button
+        [disabled]="formCart.invalid && formCart.touched"
+        (onclick)="doOder()"
+        >Hacer pedido</app-sh-button
+      >
+    </div>
+  </div>
+</div>

@@ -4,20 +4,34 @@
   width: 100%;
   height: 2.5rem;
   border-radius: 0.4rem;
-  background-color: var(--main-blue);
-  color: var(--main-white);
   border: 0px;
   font-size: 1rem;
   cursor: pointer;
   padding: 0.3rem 1rem;
+}
+
+.outline {
+  color: var(--main-blue);
+  border: 1px solid var(--main-blue);
+}
+
+.outline:hover{
+  background-color: var(--blue-alternative);
+  color: var(--main-white);
+  border: 1px solid white;
+
+}
+
+.solid {
+  background-color: var(--main-blue);
+  color: var(--main-white);
   border: 1px solid white;
 }
 
-.sh-button:hover{
+.solid:hover {
   background-color: var(--blue-alternative);
-
 }
 
-.sh-button:disabled{
+.sh-button:disabled {
   opacity: 0.5;
 }

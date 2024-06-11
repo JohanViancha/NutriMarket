@@ -1,0 +1,6 @@
+<div class="container">
+  <app-food-list
+    (addToShoppingCart)="addToCart($event)"
+    [foodList$]="foodList$"
+  ></app-food-list>
+</div>

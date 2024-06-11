@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, from, of } from 'rxjs';
+import { BehaviorSubject, Observable, from, of } from 'rxjs';
 import { User, db } from '../../../../db';
 import { UserSession } from '../../shared/models/user';
 
@@ -7,6 +7,15 @@ import { UserSession } from '../../shared/models/user';
   providedIn: 'root',
 })
 export class AuthService {
+  private userSession: BehaviorSubject<UserSession> =
+    new BehaviorSubject<UserSession>({} as UserSession);
+
+  userSession$ = this.userSession.asObservable();
+
+  setUserSession(userSession: UserSession) {
+    this.userSession.next(userSession);
+  }
+
   validateUserCredentials(
     userValue: string = '',
     passwordValue: string = ''
@@ -21,16 +30,16 @@ export class AuthService {
     );
   }
 
-  register(user: User) {
+  register(user: User): Observable<number> {
     return from(db.users.add(user));
   }
 
   saveSession(user: UserSession): void {
-    sessionStorage.setItem('session', JSON.stringify(user));
+    sessionStorage.setItem(`session`, JSON.stringify(user));
   }
 
   getSession(): Observable<UserSession> {
-    console.log(sessionStorage.getItem('session'));
+    console.log(this.userSession.value.id)
     return of(
       JSON.parse(
         sessionStorage.getItem('session') ||
@@ -40,6 +49,11 @@ export class AuthService {
   }
 
   clearSession(): void {
+    this.setUserSession({} as UserSession);
     sessionStorage.removeItem('session');
+  }
+
+  isUserLoggedIn(): boolean {
+    return !!sessionStorage.getItem('session');
   }
 }

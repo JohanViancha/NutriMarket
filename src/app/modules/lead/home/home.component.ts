@@ -1,42 +1,43 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { ShHeaderComponent } from '../../../shared/components/sh-header/sh-header.component';
-import { FoodListComponent } from '../../../shared/components/food-list/food-list.component';
-import { FoodService } from '../../../core/services/food.service';
-import { Observable } from 'rxjs';
-import { Food } from '../../../../../db';
-import { AuthService } from '../../../core/services/auth.service';
-import { UserSession } from '../../../shared/models/user';
 import { Router, RouterModule } from '@angular/router';
+import { Observable } from 'rxjs';
+import { AuthService } from '../../../core/services/auth.service';
+import { CartBuyService } from '../../../core/services/cart-buy.service';
+import { FoodService } from '../../../core/services/food.service';
+import { ShHeaderComponent } from '../../../shared/components/sh-header/sh-header.component';
+import { UserSession } from '../../../shared/models/user';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [ShHeaderComponent, FoodListComponent],
+  imports: [ShHeaderComponent, RouterModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
 })
 export class HomeComponent implements OnInit {
   router = inject(Router);
   authServices = inject(AuthService);
-  foodServices = inject(FoodService);
+  cartBuyServices = inject(CartBuyService);
   userSession$!: Observable<UserSession>;
-  foodList$!: Observable<Food[]>;
+  cartItemCount$!: Observable<number>;
 
   ngOnInit(): void {
-    this.getFoodList();
     this.getSession();
+    this.getCartItemCount();
+  }
+
+
+  getCartItemCount() {
+    this.cartItemCount$ = this.cartBuyServices.getCartItemCount();
   }
 
   getSession(): void {
     this.userSession$ = this.authServices.getSession();
   }
 
-  getFoodList(): void {
-    this.foodList$ = this.foodServices.getFoods();
-  }
 
   closeSession() {
-    this.router.navigate(['/auth']);
     this.authServices.clearSession();
+    this.router.navigate(['/auth']);
   }
 }

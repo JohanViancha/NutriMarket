@@ -1,4 +1,5 @@
 import { FormControl } from '@angular/forms';
+import { Food } from '../../../../db';
 
 export interface SignInForm {
   user: FormControl<string | null>;
@@ -13,6 +14,7 @@ export interface SignOnForm {
 }
 
 export interface UserSession {
+  cart?: Food[];
   id: number;
   name: string;
   user: string;

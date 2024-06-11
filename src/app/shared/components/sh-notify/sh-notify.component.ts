@@ -1,9 +1,3 @@
-import { Component, Input, OnInit, inject } from '@angular/core';
-import { ShButtonComponent } from '../sh-button/sh-button.component';
-import { CommonModule } from '@angular/common';
-import { NotifyService } from '../../services/notify.service';
-import { Observable, iif, of, switchMap } from 'rxjs';
-import { Notify } from '../../models/notify';
 import {
   animate,
   state,
@@ -11,6 +5,12 @@ import {
   transition,
   trigger,
 } from '@angular/animations';
+import { CommonModule } from '@angular/common';
+import { Component, OnInit, inject } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Notify } from '../../models/notifiy/notify.interfaces';
+import { NotifyService } from '../../services/notify.service';
+import { ShButtonComponent } from '../sh-button/sh-button.component';
 
 @Component({
   selector: 'app-sh-notify',
@@ -43,7 +43,11 @@ export class ShNotifyComponent implements OnInit {
     });
   }
 
-  hasConfirmed() {
+  hasCancel() {
     this.notifyService.hideNotification();
+  }
+
+  hasConfirmed() {
+    this.notifyService.confirm();
   }
 }

@@ -1,3 +1,8 @@
-<button [disabled]="disabled" class="sh-button" (click)="click()">
+<button
+  [ngClass]="variant"
+  [disabled]="disabled"
+  class="sh-button"
+  (click)="click()"
+>
   <ng-content></ng-content>
 </button>

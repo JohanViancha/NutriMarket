@@ -3,7 +3,7 @@
   <span class="food__name">{{ food.name }}</span>
   <p class="food__description">{{ food.description }}</p>
   <span class="food__price">{{ food.price | currency:'USD' }}</span>
-  <app-sh-button>
+  <app-sh-button (onclick)="addToCart(food)">
     <i class="fa-solid fa-cart-plus"></i> Agregar al carro
   </app-sh-button>
 </div>
